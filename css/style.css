@@ -1,8 +1,5 @@
 
 
-
-
-
 @charset "utf-8";
 
 
@@ -119,6 +116,9 @@ margin: 60px auto 30px auto;
 
 
 
+
+
+
 h1{ 
  color: black;
  text-align: center;
@@ -219,7 +219,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   padding: 0;
   width: 50vw;
   height: 15vw;
-  //background: rgba(255, 250, 0, 0.3); // 一旦背景色を付けて、見やすくします
+  background: rgba(255, 250, 0, 0.3); // 一旦背景色を付けて、見やすくします
   color: transparent;
   cursor: pointer;
 }
@@ -246,7 +246,5 @@ font-size: 5vw;
   left: 5px;
   font-weight: bold;
 }
-
-
 
 
