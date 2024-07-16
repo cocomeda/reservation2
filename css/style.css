@@ -33,44 +33,26 @@ a:hover {
 
 
 
-/*mainコンテンツ
----------------------------------------------------------------------------*/
-/*mainブロック全体の設定*/
-#main {
-	float: right;	/*右に回り込み*/
-	width: 100%;		/*ブロックの幅*/
-}
-/*トップページでのmainコンテンツへの追加設定*/
-.home #main {
-	margin-top: 30%;	/*上に空けるスペース。スライドショーとのバランスをとって設定して下さい。*/
-}
-/*mainコンテンツのh2タグ設定*/
-#main h2 {
-	clear: both;
-	font-size: 5vw;
-	margin-bottom: 20px;
-	padding: 10px 20px 10px 60px;	/*上、右、下、左への見出し内の余白*/
-	color: #fff;		/*文字色*/
-	background: #22ac38;	/*背景色（古いブラウザ用）*/
-	background: #22ac38 url(../images/arrow2.png) no-repeat 20px center / 25px;	/*背景色、背景画像の読み込み。左から20pxの場所に配置。画像の幅を25pxに。*/
-	border-radius: 10px;	/*角丸のサイズ*/
-}
 
-/*mainコンテンツの段落タグ設定*/
-#main p {
-	padding: 0px 20px 20px;	/*上、左右、下への余白*/
-}
-/*他。微調整。*/
-#main p + p {
-	margin-top: -5px;
-}
-#main h2 + p,
-#main h3 + p {
-	margin-top: -10px;
-}
-#main section + section {
-	margin-top: 30px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
