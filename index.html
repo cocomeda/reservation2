@@ -1,69 +1,60 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>coco medaka 35</title>
-<title>メダカ予約注文</title>
-<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<style>
-  #loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5vw;
-    z-index: 9999;
-  }
-
-  #main-content {
-    display: none;
-  }
-
-  /* 大きなチェックボックスのスタイル */
-  input[type="checkbox"] {
-    width: 3vw; /* ビューポート幅の4%に設定 */
-    height: 3vw; /* ビューポート幅の4%に設定 */
-    margin-right: 1vw; /* チェックボックスとラベルの間にスペースを追加 */  
-    margin-left: 1vw; /* チェックボックスとラベルの間にスペースを追加 */
-  }
-
-  label {
-    font-size: 4vw; /* チェックボックスラベルのフォントサイズを調整 */
-  }
-
-  /* 大きなボタンのスタイル */
-  #submit-button {
-    padding: 1vw 5vw; /* ボタンの内側の余白を調整 */
-    font-size: 8vw; /* ボタンのフォントサイズを調整 */
-    border: 2px solid #4CAF50; /* 枠線の太さと色を設定 */
-    background-color: #eee; /* ボタンの背景色 */
-    color: black; /* ボタンの文字色 */
-    border-radius: 5px; /* ボタンの角を丸くする */
-    cursor: pointer; /* ポインタカーソルを表示 */
-    border-color: black; /* ホバー時の枠線の色 */
-  }
-
-  #submit-button:disabled {
-    background-color: #eee; /* 無効化時の背景色 */
-    cursor: not-allowed; /* 無効化時のカーソル */
-    color: #ccc; /* ボタンの文字色 */
-    border-color: #ccc; /* ホバー時の枠線の色 */
-  }
-
-  /* 画像のスタイル */
-  #species-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5vw;
+      z-index: 9999;
+    }
+    #main-content {
+      display: none;
+    }
+    input[type="checkbox"] {
+      width: 3vw; 
+      height: 3vw; 
+      margin-right: 1vw; 
+      margin-left: 1vw; 
+    }
+    label {
+      font-size: 4vw; 
+    }
+    #submit-button {
+      padding: 1vw 5vw; 
+      font-size: 8vw; 
+      border: 2px solid #4CAF50; 
+      background-color: #eee; 
+      color: black; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      border-color: black; 
+    }
+    #submit-button:disabled {
+      background-color: #eee; 
+      cursor: not-allowed; 
+      color: #ccc; 
+      border-color: #ccc; 
+    }
+    .image-preview {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 1vw;
+    }
+  </style>
 </head>
 <body>
   <div id="loading">Loading...</div>
@@ -74,42 +65,42 @@
     <form id="order-form">
       <h1>
         <label for="species">品種名:</label>
-        <select id="species" name="species" required onchange="updateDetails()">
+        <select id="species" name="species" required onchange="updatePriceAndImage()">
           <!-- Options will be populated dynamically -->
-        </select><br>
+        </select>
+        <br>
         <label for="quantity">匹数:</label>
-        <select id="quantity" name="quantity" required onchange="updatePrice()">
+        <select id="quantity" name="quantity" required onchange="updatePriceAndImage()">
           <option value="">選択してください</option>
           <option value="1">1匹</option>
           <option value="2">2匹</option>
           <option value="3">3匹</option>
           <option value="4">4匹</option>
           <option value="5">5匹</option>
-        </select><br><br>
+        </select>
+        <br><br>
       </h1>
-
-      <img id="species-image" src="" alt="メダカの画像">
       <h1>↓　受取希望日を選択　↓</h1>
       <h1>
-        <div>
-          <input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()">
-        </div>
+        <div><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></div>
       </h1>
       <h1></h1>
-
-      <h1><p>合計金額: <span id="total-price">0</span>円</p></h1><br>
+      <h1>
+        <p>合計金額: <span id="total-price">0</span>円</p>
+      </h1>
+      <br>
       <h1 class="cp">
         <label for="agreement">
           <input type="checkbox" id="agreement" name="agreement" onchange="toggleSubmitButton()">
           期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する
         </label>
       </h1>
-
       <br>
       <h1 class="top">
         <button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button>
       </h1>
     </form>
+    <img id="species-image" class="image-preview" src="" alt="選択したメダカの画像が表示されます">
   </div>
 
   <script>
@@ -117,12 +108,9 @@
       const d = new Date();
       d.setDate(d.getDate() + 2);
       document.getElementById("tomorrow").setAttribute("min", d.toISOString().substr(0, 10));
-
       const d1 = new Date();
       d1.setDate(d1.getDate() + 2 + 28);
       document.getElementById("tomorrow").setAttribute("max", d1.toISOString().substr(0, 10));
-
-      // Fetch medaka data and populate the form
       fetchMedakaData();
     });
 
@@ -142,11 +130,9 @@
           option.value = species;
           option.textContent = species;
           select.appendChild(option);
-          // Store details in a global object
-          medakaDetails[species] = { price, imageUrl };
+          prices[species] = { price, imageUrl };
         });
 
-        // Hide loading screen and show main content
         document.getElementById('loading').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
       } catch (error) {
@@ -154,28 +140,29 @@
       }
     }
 
-    let medakaDetails = {};
+    let prices = {};
 
     function calculatePrice(species, quantity) {
-      return medakaDetails[species].price * quantity;
+      return prices[species] ? prices[species].price * quantity : 0;
     }
 
-    function updateDetails() {
-      const species = document.getElementById('species').value;
-      if (species) {
-        document.getElementById('species-image').src = medakaDetails[species].imageUrl;
-        updatePrice();
-      }
-    }
-
-    function updatePrice() {
+    function updatePriceAndImage() {
       const species = document.getElementById('species').value;
       const quantity = document.getElementById('quantity').value;
-      if (species && quantity) {
-        const totalPrice = calculatePrice(species, quantity);
-        document.getElementById('total-price').textContent = totalPrice;
-        toggleSubmitButton(); // Check the state of the submit button
+      const totalPrice = calculatePrice(species, quantity);
+      document.getElementById('total-price').textContent = totalPrice;
+
+      const speciesImage = document.getElementById('species-image');
+      if (species && prices[species]) {
+        speciesImage.src = prices[species].imageUrl;
+        speciesImage.alt = `${species}の画像`;
+        speciesImage.style.display = 'block';
+      } else {
+        speciesImage.src = '';
+        speciesImage.alt = '選択したメダカの画像が表示されます';
+        speciesImage.style.display = 'none';
       }
+      toggleSubmitButton();
     }
 
     function toggleSubmitButton() {
@@ -201,7 +188,6 @@
           type: 'text',
           text: message
         }]);
-       // Close the LIFF window
         liff.closeWindow();
       } catch (error) {
         console.error('Error sending message:', error);
@@ -209,7 +195,7 @@
     }
 
     async function main() {
-     // await liff.init({ liffId: "1657196041-ALeOLrEa" });
+      await liff.init({ liffId: "1657196041-ALeOLrEa" });
       if (!liff.isLoggedIn()) {
         liff.login();
       }
