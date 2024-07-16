@@ -60,8 +60,9 @@ a:hover {
 	margin-bottom: 20px;
 	padding: 10px 20px 10px 60px;	/*上、右、下、左への見出し内の余白*/
 	color: #fff;		/*文字色*/
-	background: #22ac38;	/*背景色（古いブラウザ用）*/
-	background: #22ac38 url(../images/arrow2.png) no-repeat 20px center / 25px;	/*背景色、背景画像の読み込み。左から20pxの場所に配置。画像の幅を25pxに。*/
+
+
+	
 	border-radius: 10px;	/*角丸のサイズ*/
 }
 /*mainコンテンツのh3タグ設定*/
