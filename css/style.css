@@ -61,19 +61,7 @@ a:hover {
 	background: #22ac38 url(../images/arrow2.png) no-repeat 20px center / 25px;	/*背景色、背景画像の読み込み。左から20pxの場所に配置。画像の幅を25pxに。*/
 	border-radius: 10px;	/*角丸のサイズ*/
 }
-/*mainコンテンツのh3タグ設定*/
-#main h3 {
-	clear: both;
-	margin-bottom: 20px;
-	padding: 4px 20px;		/*上下、左右への見出し内の余白*/
-	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
-	border-radius: 10px;	/*角丸のサイズ*/
-	background: #fff;	/*背景色*/
-}
-#main h3::first-letter {
-	border-left: 3px solid #22ac38;
-	padding-left: 15px;
-}
+
 /*mainコンテンツの段落タグ設定*/
 #main p {
 	padding: 0px 20px 20px;	/*上、左右、下への余白*/
@@ -144,13 +132,7 @@ margin-top: 1vw;
 margin-left: 1vw;
 }
 
-h1.t2{ 
- color: black;
- text-align: center;
-font-size: 3vw;
-margin-bottom: 1vw;
-margin-top: 1vw;
-}
+
 
 
 
