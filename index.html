@@ -20,24 +20,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 5vw;
       z-index: 9999;
     }
 
     #main-content {
       display: none;
     }
-
-
-
   /* 大きなチェックボックスのスタイル */
   input[type="checkbox"] {
-    transform: scale(1.5); /* サイズを1.5倍にする */
-    margin-right: 1.5vw; /* チェックボックスとラベルの間にスペースを追加 */
+    width: 3vw; /* ビューポート幅の4%に設定 */
+    height: 3vw; /* ビューポート幅の4%に設定 */
+    margin-right: 1vw; /* チェックボックスとラベルの間にスペースを追加 */  
+    margin-left: 1vw; /* チェックボックスとラベルの間にスペースを追加 */
   }
 
   label {
-    font-size: 5vw; /* チェックボックスラベルのフォントサイズを調整 */
+    font-size: 4vw; /* チェックボックスラベルのフォントサイズを調整 */
   }
 
 
@@ -45,22 +44,21 @@
   #submit-button {
     padding: 1vw 5vw; /* ボタンの内側の余白を調整 */
     font-size: 8vw; /* ボタンのフォントサイズを調整 */
-     border: 2px solid #4CAF50; /* 枠線の太さと色を設定 */
+    border: 2px solid #4CAF50; /* 枠線の太さと色を設定 */
     background-color: #eee; /* ボタンの背景色 */
     color: black; /* ボタンの文字色 */
     border-radius: 5px; /* ボタンの角を丸くする */
     cursor: pointer; /* ポインタカーソルを表示 */
-border-color: black; /* ホバー時の枠線の色 */
+    border-color: black; /* ホバー時の枠線の色 */
   }
 
   #submit-button:disabled {
     background-color: #eee; /* 無効化時の背景色 */
     cursor: not-allowed; /* 無効化時のカーソル */
-   color: #ccc; /* ボタンの文字色 */
-border-color: #ccc; /* ホバー時の枠線の色 */
-
+    color: #ccc; /* ボタンの文字色 */
+    border-color: #ccc; /* ホバー時の枠線の色 */
   }
-  
+
   </style>
 
 
@@ -73,13 +71,17 @@ border-color: #ccc; /* ホバー時の枠線の色 */
   <div id="loading">Loading...</div>
   <div id="main-content">
     <h1 class = "top">メダカ予約注文</h1>
+
+<h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
+    <BR>
     <form id="order-form">
-       <h1><label for="species">品種名:</label>
+      <h1><label for="species">品種名:</label>
       <select id="species" name="species" required onchange="updatePrice()">
         <!-- Options will be populated dynamically -->
       </select><br>
       <label for="quantity">匹数:</label>
       <select id="quantity" name="quantity" required onchange="updatePrice()">
+        <option value="">選択してください</option>
         <option value="1">1匹</option>
         <option value="2">2匹</option>
         <option value="3">3匹</option>
@@ -88,15 +90,18 @@ border-color: #ccc; /* ホバー時の枠線の色 */
       </select><br><br></h1>
 
       <h1>↓　受取希望日を選択　↓</h1>
-      <h1><div><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required></div></h1>
+      <h1><div><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></div></h1>
       <h1></h1>
 
       <h1><p>合計金額: <span id="total-price">0</span>円</p></h1><br>
-      <label for="agreement">
+      <h1 class ="cp">
+<label for="agreement">
         <input type="checkbox" id="agreement" name="agreement" onchange="toggleSubmitButton()">
-        <h1>期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する<h1>
-      </label><br>
-      <h1 class ="top"><button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button></h1>
+        期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する
+      </label></h1>
+
+<br>
+    <h1 class ="top"><button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button></h1>
     </form>
   </div>
 
@@ -109,14 +114,6 @@ border-color: #ccc; /* ホバー時の枠線の色 */
       const d1 = new Date();
       d1.setDate(d1.getDate() + 2 + 28);
       document.getElementById("tomorrow").setAttribute("max", d1.toISOString().substr(0, 10));
-
-      // Set the default date to today
-      const today = new Date();
-      today.setDate(today.getDate());
-      const yyyy = today.getFullYear();
-      const mm = ("0" + (today.getMonth() + 1)).slice(-2);
-      const dd = ("0" + today.getDate()).slice(-2);
-      document.getElementById("tomorrow").value = yyyy + '-' + mm + '-' + dd;
 
       // Fetch medaka data and populate the form
       fetchMedakaData();
@@ -160,12 +157,17 @@ border-color: #ccc; /* ホバー時の枠線の色 */
       const quantity = document.getElementById('quantity').value;
       const totalPrice = calculatePrice(species, quantity);
       document.getElementById('total-price').textContent = totalPrice;
+      toggleSubmitButton(); // Check the state of the submit button
     }
 
     function toggleSubmitButton() {
+      const species = document.getElementById('species').value;
+      const quantity = document.getElementById('quantity').value;
+      const date = document.getElementById('tomorrow').value;
       const agreementChecked = document.getElementById('agreement').checked;
       const submitButton = document.getElementById('submit-button');
-      submitButton.disabled = !agreementChecked;
+
+      submitButton.disabled = !(species && quantity && date && agreementChecked);
     }
 
     async function submitOrder() {
@@ -174,17 +176,15 @@ border-color: #ccc; /* ホバー時の枠線の色 */
       const date = document.getElementById('tomorrow').value;
       const price = calculatePrice(species, quantity);
 
-      const message = `【注文内容】\n==============================\n品種名: ${species}\n数量(匹): ${quantity}\n==============================\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
+      const message = `【注文内容】\n==============================\n品種名: ${species}\n数量(匹): ${quantity}\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
 
       try {
         await liff.sendMessages([{
           type: 'text',
           text: message
         }]);
-        
-        // Close the LIFF window
+       // Close the LIFF window
         liff.closeWindow();
-	      
       } catch (error) {
         console.error('Error sending message:', error);
       }
@@ -200,8 +200,4 @@ border-color: #ccc; /* ホバー時の枠線の色 */
     main();
   </script>
 </body>
-	
-	
-	
-	
 </html>
