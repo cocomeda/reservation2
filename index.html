@@ -273,7 +273,13 @@
     }
 
 
-
+       // Hide loading screen and show main content
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
 
     let prices = {};
 
