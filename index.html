@@ -257,7 +257,7 @@ function initializeSlider() {
       toggleSubmitButton(); // Check the state of the submit button
     }
 
-    function toggleSubmitButton123() {
+    function toggleSubmitButton() {
       const species = document.getElementById('species').value;
       const quantity = document.getElementById('quantity').value;
       const date = document.getElementById('tomorrow').value;
@@ -270,13 +270,6 @@ function initializeSlider() {
         submitButton.disabled = true;
       }
     }
-
-    function toggleSubmitButton() {
-      const agreementChecked = document.getElementById('agreement').checked;
-      const submitButton = document.getElementById('submit-button');
-      submitButton.disabled = !agreementChecked;
-    }
-
 
 
 
