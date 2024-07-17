@@ -272,7 +272,7 @@ function initializeSlider() {
       const quantity = document.getElementById('quantity').value;
       const date = document.getElementById('tomorrow').value;
       const price = calculatePrice(species, quantity);
-      const message = `【注文内容】\n==============================\n品種名: ${species}\n数量(匹): ${quantity}\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
+      const message = `【注文内容】`;
 
       try {
         await liff.sendMessages([{
