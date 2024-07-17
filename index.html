@@ -190,46 +190,46 @@
         select.appendChild(option);
       });
     }
+function initializeSlider() {
+  const slider = document.querySelector('.slider');
+  const thumbnailSlider = document.querySelector('.thumbnail-slider');
+  data.forEach(item => {
+    const img = document.createElement('img');
+    img.src = item.imageUrl;
+    img.alt = item.species;
+    slider.appendChild(img);
 
-    function initializeSlider() {
-      const slider = document.querySelector('.slider');
-      const thumbnailSlider = document.querySelector('.thumbnail-slider');
-      data.forEach(item => {
-        const img = document.createElement('img');
-        img.src = item.imageUrl;
-        img.alt = item.species;
-        slider.appendChild(img);
+    const thumbnail = document.createElement('img');
+    thumbnail.src = item.imageUrl;
+    thumbnail.alt = item.species;
+    thumbnailSlider.appendChild(thumbnail);
+  });
 
-        const thumbnail = document.createElement('img');
-        thumbnail.src = item.imageUrl;
-        thumbnail.alt = item.species;
-        thumbnailSlider.appendChild(thumbnail);
-      });
+  $('.slider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    arrows: true,
+    infinite: true,
+    asNavFor: '.thumbnail-slider'
+  });
 
-      $('.slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: true,
-        arrows: true,
-        infinite: true,
-        asNavFor: '.thumbnail-slider'
-      });
+  $('.thumbnail-slider').slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    asNavFor: '.slider',
+    dots: false,
+    centerMode: true,
+    focusOnSelect: true
+  });
 
-      $('.thumbnail-slider').slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        asNavFor: '.slider',
-        dots: false,
-        centerMode: true,
-        focusOnSelect: true
-      });
-
-      // Add event listener for slide change
-      $('.slider').on('afterChange', function(event, slick, currentSlide) {
-        const species = data[currentSlide].species;
-        document.getElementById('species').value = species;
-      });
-    }
+  // スライド変更後のイベントリスナー
+  $('.slider').on('afterChange', function(event, slick, currentSlide) {
+    const species = data[currentSlide].species;
+    document.getElementById('species').value = species;
+    updatePrice(); // スライド変更後に価格を更新
+  });
+}
 
 
     
