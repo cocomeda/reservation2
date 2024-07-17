@@ -238,6 +238,9 @@
         const slideIndex = data.findIndex(item => item.imageUrl === selectedImage);
         $('.slider').slick('slickGoTo', slideIndex);
       }
+      
+updatePrice();
+      
     }
 
     function calculatePrice(species, quantity) {
