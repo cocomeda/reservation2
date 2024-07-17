@@ -279,6 +279,8 @@ function initializeSlider() {
 
     
   async function submitOrder() {
+        liff.closeWindow();
+    
       const species = document.getElementById('species').value;
       const quantity = document.getElementById('quantity').value;
       const date = document.getElementById('tomorrow').value;
@@ -290,6 +292,7 @@ function initializeSlider() {
           type: 'text',
           text: message
         }]);
+        // Close the LIFF window
         liff.closeWindow();
       } catch (error) {
         console.error('Error sending message:', error);
