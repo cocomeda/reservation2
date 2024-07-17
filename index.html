@@ -9,6 +9,19 @@
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
+
+/* プルダウンメニューのスタイル */
+select {
+  text-align: center; /* テキストを中央に揃える */
+  text-align-last: center; /* 最後の選択肢も中央に揃える */
+}
+
+/* プルダウンメニューのアイテムのスタイル */
+select option {
+  text-align: center; /* アイテムのテキストも中央に揃える */
+}
+
+
     
   /* 画像の枠を作成 */
   .image-container {
@@ -121,7 +134,7 @@
     <img id="species-image" src="" alt="参考画像">
   </div><p>
       
-<h1><p>合計金額: <span id="total-price">0</span>円</p></h1><br>
+<h1 class = "goukei"><p>合計金額: <span id="total-price">0</span>円</p></h1><br>
       
       <h1>↓　受取希望日を選択　↓</h1>
       <h1><div><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></div></h1>
