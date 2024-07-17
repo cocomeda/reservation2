@@ -231,6 +231,8 @@
       });
     }
 
+
+    
     function updateSlider() {
       const selectedSpecies = document.getElementById('species').value;
       const selectedImage = data.find(item => item.species === selectedSpecies)?.imageUrl;
@@ -238,10 +240,14 @@
         const slideIndex = data.findIndex(item => item.imageUrl === selectedImage);
         $('.slider').slick('slickGoTo', slideIndex);
       }
-      
-updatePrice();
-      
+      const species = document.getElementById('species').value;
+      const quantity = document.getElementById('quantity').value;
+      const totalPrice = calculatePrice(species, quantity);
+      document.getElementById('total-price').textContent = totalPrice;
+      toggleSubmitButton(); // Check the state of the submit button
     }
+
+    
 
     function calculatePrice(species, quantity) {
       return data.find(item => item.species === species)?.price * quantity || 0;
