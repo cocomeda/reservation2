@@ -176,35 +176,41 @@ margin-top: 1vw;
 }
 
 
+
 input[type="date"] {
   position: relative;
   padding: 0 10px;
-  width: 200px; /* 幅をピクセル単位で設定 */
-  height: 50px; /* 高さをピクセル単位で設定 */
-  border: 1px solid #ccc; /* ボーダーを追加 */
-  background: #fff; /* 背景色を白に設定 */
-  color: #000; /* テキスト色を黒に設定 */
+  width: 50vw;
+  height: 15vw;
+  border: 0;
+  background: transparent;
   box-sizing: border-box;
   font-size: 14px;
+  color: #999;
 }
 
-input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-clear-button {
+
+
+input[type="date"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
+input[type="date"]::-webkit-clear-button{
   -webkit-appearance: none;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+
+
+input[type="date"]::-webkit-calendar-picker-indicator{
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 0px;
+  top: 0px;
   padding: 0;
-  width: 50px; /* 幅をピクセル単位で設定 */
-  height: 50px; /* 高さをピクセル単位で設定 */
-  background: rgba(255, 250, 0, 0.3); /* 背景色を黄色に設定 */
+  width: 50vw;
+  height: 15vw;
+ background: rgba(180, 150, 100, 0.3);
   color: transparent;
   cursor: pointer;
 }
-
 
 
 
