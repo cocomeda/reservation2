@@ -96,7 +96,17 @@
       border-color: #ccc; 
     }
 
+hr {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 
+/* 実線 */
+.hr1 {
+  border-top: 1px solid #aaa;
+}
 
 
 
@@ -110,8 +120,10 @@
   <div id="loading">Loading...</div>
   <div id="main-content">
     <h1>メダカ予約注文</h1>
+    
+<hr class="hr1">
 
-<h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
+    <h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
     <BR>
     <form id="order-form">
        <h1><label for="species">品種名:</label>
