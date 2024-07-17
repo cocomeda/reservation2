@@ -101,19 +101,7 @@ input[type="date"] {
 }
 
 
-label::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  right: -43px;
-  width: 36px;
-  height: 36px;
-  background-color: #06c;
-  background-image: url("icon_calendar.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 10px;
-}
+
 
 input[type="date"]::-webkit-inner-spin-button{
   -webkit-appearance: none;
