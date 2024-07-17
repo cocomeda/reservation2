@@ -10,18 +10,52 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
 
-/* プルダウンメニューのスタイル */
-select {
-  text-align: center; /* テキストを中央に揃える */
-  text-align-last: center; /* 最後の選択肢も中央に揃える */
-}
+  /* プルダウンメニューのスタイル */
+  select {
+    width: 50%; /* プルダウンメニューの幅 */
+    padding: 10px; /* 内側の余白 */
+    font-size: 16px; /* フォントサイズ */
+    text-align: center; /* テキストを中央に揃える */
+    text-align-last: center; /* 最後の選択肢も中央に揃える */
+  }
 
-/* プルダウンメニューのアイテムのスタイル */
-select option {
-  text-align: center; /* アイテムのテキストも中央に揃える */
-}
+  /* プルダウンメニューのアイテムのスタイル */
+  select option {
+    text-align: center; /* アイテムのテキストも中央に揃える */
+  }
+
+  /* スライダーのスタイル */
+  .slider {
+    width: 80%; /* スライダーの幅 */
+    margin: 20px auto; /* スライダーを中央に配置 */
+  }
+
+  .slider img {
+    width: 100%; /* 画像の幅をスライダーに合わせる */
+    height: auto; /* 高さを自動調整 */
+  }
+
+  .thumbnail-slider {
+    width: 80%; /* サムネイルスライダーの幅 */
+    margin: 20px auto; /* サムネイルスライダーを中央に配置 */
+  }
+
+  .thumbnail-slider img {
+    width: 100px; /* サムネイルの幅 */
+    height: auto; /* 高さを自動調整 */
+    cursor: pointer; /* マウスポインタを表示 */
+  }
 
 
+
+
+
+
+
+
+
+
+    
     
   /* 画像の枠を作成 */
   .image-container {
@@ -130,6 +164,16 @@ select option {
           <option value="5">5匹</option>
         </select><br><br></h1>
 
+
+  <div class="slider">
+    <!-- Images will be populated dynamically -->
+  </div>
+
+  <div class="thumbnail-slider">
+    <!-- Thumbnails will be populated dynamically -->
+  </div>
+
+      
   <p><div id="image-display" class="image-container">
     <img id="species-image" src="" alt="参考画像">
   </div><p>
@@ -152,8 +196,95 @@ select option {
 
     
    
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script>
+    let data = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('https://script.google.com/macros/s/AKfycbxTVVYyrzHIbXt1kpm55r6vWUkeyAyeovxTnbge-3qpqDf_-m0hD0zn7MOWBT6TJWs/exec')
+        .then(response => response.json())
+        .then(result => {
+          data = result.map(item => ({
+            species: item[0],
+            price: item[1],
+            imageUrl: item[2]
+          }));
+          populateSelect();
+          initializeSlider();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    });
+
+    function populateSelect() {
+      const select = document.getElementById('species');
+      data.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.species;
+        option.textContent = item.species;
+        select.appendChild(option);
+      });
+    }
+
+    function initializeSlider() {
+      const slider = document.querySelector('.slider');
+      const thumbnailSlider = document.querySelector('.thumbnail-slider');
+      data.forEach(item => {
+        const img = document.createElement('img');
+        img.src = item.imageUrl;
+        img.alt = item.species;
+        slider.appendChild(img);
+
+        const thumbnail = document.createElement('img');
+        thumbnail.src = item.imageUrl;
+        thumbnail.alt = item.species;
+        thumbnailSlider.appendChild(thumbnail);
+      });
+
+      $('.slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        arrows: true,
+        infinite: true,
+        asNavFor: '.thumbnail-slider'
+      });
+
+      $('.thumbnail-slider').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.slider',
+        dots: false,
+        centerMode: true,
+        focusOnSelect: true
+      });
+
+      // Add event listener for slide change
+      $('.slider').on('afterChange', function(event, slick, currentSlide) {
+        const species = data[currentSlide].species;
+        document.getElementById('species').value = species;
+      });
+    }
+
+    function updateSlider() {
+      const selectedSpecies = document.getElementById('species').value;
+      const selectedImage = data.find(item => item.species === selectedSpecies)?.imageUrl;
+      if (selectedImage) {
+        const slideIndex = data.findIndex(item => item.imageUrl === selectedImage);
+        $('.slider').slick('slickGoTo', slideIndex);
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+    
     window.addEventListener('DOMContentLoaded', () => {
       const d = new Date();
       d.setDate(d.getDate() + 2);
