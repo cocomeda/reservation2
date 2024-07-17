@@ -96,7 +96,7 @@
     <BR>
     <form id="order-form">
        <h1><label for="species">品種名:</label>
-      <select id="species" name="species" required onchange="updateSlider()">
+      <select id="species" name="species" required onchange="updatePrice()">
         <!-- Options will be populated dynamically -->
       </select><br>
 
@@ -240,11 +240,7 @@
         const slideIndex = data.findIndex(item => item.imageUrl === selectedImage);
         $('.slider').slick('slickGoTo', slideIndex);
       }
-      const species = document.getElementById('species').value;
-      const quantity = document.getElementById('quantity').value;
-      const totalPrice = calculatePrice(species, quantity);
-      document.getElementById('total-price').textContent = totalPrice;
-      toggleSubmitButton(); // Check the state of the submit button
+
     }
 
     
