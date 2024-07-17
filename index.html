@@ -4,8 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>coco medaka 35</title>
+
+<title>メダカ予約注文</title>
+
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
+    
     #loading {
       position: fixed;
       top: 0;
@@ -19,10 +23,11 @@
       justify-content: center;
       font-size: 5vw;
       z-index: 9999;
-    }
+    }    
     #main-content {
       display: none;
     }
+    
     input[type="checkbox"] {
       width: 3vw; 
       height: 3vw; 
@@ -57,17 +62,19 @@
   </style>
 
 <link rel="stylesheet" href="css/style.css">
+
+
   
 </head>
 <body>
   <div id="loading">Loading...</div>
   <div id="main-content">
     <h1 class="top">メダカ予約注文</h1>
+    
     <h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
     <br>
     <form id="order-form">
-      <h1>
-        <label for="species">品種名:</label>
+      <h1><label for="species">品種名:</label>
         <select id="species" name="species" required onchange="updatePriceAndImage()">
           <!-- Options will be populated dynamically -->
         </select>
@@ -80,28 +87,20 @@
           <option value="3">3匹</option>
           <option value="4">4匹</option>
           <option value="5">5匹</option>
-        </select>
-        <br><br>
-      </h1>
+        </select><br><br></h1>
+      
       <h1>↓　受取希望日を選択　↓</h1>
-      <h1>
-        <div><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></div>
-      </h1>
+      <h1><div><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></div></h1>
       <h1></h1>
-      <h1>
-        <p>合計金額: <span id="total-price">0</span>円</p>
-      </h1>
-      <br>
+      
+      <h1><p>合計金額: <span id="total-price">0</span>円</p></h1><br>
       <h1 class="cp">
         <label for="agreement">
           <input type="checkbox" id="agreement" name="agreement" onchange="toggleSubmitButton()">
           期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する
-        </label>
-      </h1>
+        </label></h1>
       <br>
-      <h1 class="top">
-        <button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button>
-      </h1>
+      <h1 class="top"><button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button></h1>
     </form>
     <img id="species-image" class="image-preview" src="" alt="選択したメダカの画像が表示されます">
   </div>
@@ -183,7 +182,6 @@
       const quantity = document.getElementById('quantity').value;
       const date = document.getElementById('tomorrow').value;
       const price = calculatePrice(species, quantity);
-
       const message = `【注文内容】\n==============================\n品種名: ${species}\n数量(匹): ${quantity}\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
 
       try {
