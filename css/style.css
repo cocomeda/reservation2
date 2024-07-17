@@ -144,6 +144,15 @@ margin-top: 1vw;
 margin-left: 1vw;
 }
 
+h1.goukei{ 
+font-weight: bold;
+ color: black;
+ text-align: center;
+font-size: 8vw;
+margin-bottom: 0.3vw;
+margin-top: 2vw;
+}
+
 h1.t2{ 
  color: black;
  text-align: center;
