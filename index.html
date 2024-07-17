@@ -96,7 +96,7 @@
     <BR>
     <form id="order-form">
        <h1><label for="species">品種名:</label>
-      <select id="species" name="species" required onchange="updatePrice()">
+      <select id="species" name="species" required onchange="updateSlider()">
         <!-- Options will be populated dynamically -->
       </select><br>
 
@@ -239,6 +239,8 @@
       if (selectedImage) {
         const slideIndex = data.findIndex(item => item.imageUrl === selectedImage);
         $('.slider').slick('slickGoTo', slideIndex);
+
+        updatePrice();
       }
 
     }
