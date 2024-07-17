@@ -128,7 +128,7 @@
  <h1 class="t"><br></h1>
   <h1 class="cp">
 <label for="agreement">
-        <input type="checkbox" id="agreement" name="agreement">
+        <input type="checkbox" id="agreement" name="agreement" onchange="toggleSubmitButton()">
         期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する。
       </label></h1>
 
@@ -279,7 +279,7 @@ function initializeSlider() {
 
     
   async function submitOrder() {
-        liff.closeWindow();
+      
     
       const species = document.getElementById('species').value;
       const quantity = document.getElementById('quantity').value;
