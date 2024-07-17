@@ -96,12 +96,12 @@
     <BR>
     <form id="order-form">
        <h1><label for="species">品種名:</label>
-      <select id="species0" name="species" required onchange="updateSlider()">
+      <select id="species" name="species" required onchange="updateSlider()">
         <!-- Options will be populated dynamically -->
       </select><br>
 
       <label for="quantity">匹数:</label>
-      <select id="quantity0" name="quantity" required onchange="updatePrice()">
+      <select id="quantity" name="quantity" required onchange="updatePrice()">
         <option value="">選択してください</option>
         <option value="1">1匹</option>
         <option value="2">2匹</option>
@@ -122,13 +122,13 @@
 
 
       <h1>↓　受取希望日を選択　↓</h1>
-      <h1><input type="date" name="daytime" class="button" id="tomorrow0" style="font-size:8vw" required onchange="toggleSubmitButton()"></h1>
+      <h1><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></h1>
 
 
  <h1 class="t"><br></h1>
   <h1 class="cp">
 <label for="agreement">
-        <input type="checkbox" id="agreement0" name="agreement" onchange="toggleSubmitButton()">
+        <input type="checkbox" id="agreement" name="agreement" onchange="toggleSubmitButton()">
         期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する
       </label></h1>
 
@@ -292,9 +292,9 @@ function initializeSlider() {
 
     
   async function submitOrder() {
-      const species = document.getElementById('species0').value;
-      const quantity = document.getElementById('quantity0').value;
-      const date = document.getElementById('tomorrow0').value;
+      const species = document.getElementById('species').value;
+      const quantity = document.getElementById('quantity').value;
+      const date = document.getElementById('tomorrow').value;
       const price = calculatePrice(species, quantity);
       const message = `【注文内容】\n==============================\n品種名: ${species}\n数量(匹): ${quantity}\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
 
