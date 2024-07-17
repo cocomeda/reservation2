@@ -264,39 +264,23 @@
       }
     }
 
-    function submitOrder() {
-      const form = document.getElementById('order-form');
-      const formData = new FormData(form);
-      const data = {};
-      formData.forEach((value, key) => {
-        data[key] = value;
-      });
+  async function submitOrder() {
+      const species = document.getElementById('species').value;
+      const quantity = document.getElementById('quantity').value;
+      const date = document.getElementById('tomorrow').value;
+      const price = calculatePrice(species, quantity);
+      const message = `【注文内容】\n==============================\n品種名: ${species}\n数量(匹): ${quantity}\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
 
-      fetch('https://your-order-endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(result => {
-        alert('注文が送信されました');
-        form.reset();
-        document.getElementById('submit-button').disabled = true;
-      })
-      .catch(error => {
+      try {
+        await liff.sendMessages([{
+          type: 'text',
+          text: message
+        }]);
+        liff.closeWindow();
+      } catch (error) {
         console.error('Error sending message:', error);
-        alert('注文の送信に失敗しました');
-      });
+      }
     }
-
-
 
     async function main() {
       //await liff.init({ liffId: "1657196041-ALeOLrEa" });
