@@ -206,7 +206,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   padding: 0;
   width: 50vw;
   height: 15vw;
-  background: rgba(255, 250, 0, 0.3); // 一旦背景色を付けて、見やすくします
+ background: rgba(255, 250, 0, 0.3); 
   color: transparent;
   cursor: pointer;
 }
