@@ -131,7 +131,6 @@
 
       <h1 class="top"><button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button></h1>
 
-  
 
 
     </form>
@@ -257,11 +256,7 @@
       const agreementChecked = document.getElementById('agreement').checked;
       const submitButton = document.getElementById('submit-button');
 
-      if (species && quantity && date && agreementChecked) {
-        submitButton.disabled = false;
-      } else {
-        submitButton.disabled = true;
-      }
+     submitButton.disabled = !(species && quantity && date && agreementChecked);
     }
 
   async function submitOrder() {
