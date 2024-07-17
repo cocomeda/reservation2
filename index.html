@@ -257,7 +257,7 @@ function initializeSlider() {
       toggleSubmitButton(); // Check the state of the submit button
     }
 
-    function toggleSubmitButton() {
+    function toggleSubmitButton123() {
       const species = document.getElementById('species').value;
       const quantity = document.getElementById('quantity').value;
       const date = document.getElementById('tomorrow').value;
@@ -271,7 +271,11 @@ function initializeSlider() {
       }
     }
 
-
+    function toggleSubmitButton() {
+      const agreementChecked = document.getElementById('agreement').checked;
+      const submitButton = document.getElementById('submit-button');
+      submitButton.disabled = !agreementChecked;
+    }
 
 
 
@@ -298,7 +302,7 @@ function initializeSlider() {
         console.error('Error sending message:', error);
       }
     }
-
+    
     async function main() {
       await liff.init({ liffId: "1657196041-ALeOLrEa" });
       if (!liff.isLoggedIn()) {
