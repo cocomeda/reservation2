@@ -206,7 +206,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   padding: 0;
   width: 50vw;
   height: 15vw;
- /* background: rgba(255, 250, 0, 0.3);*/
+ background: rgba(180, 150, 100, 0.3);
   color: transparent;
   cursor: pointer;
 }
