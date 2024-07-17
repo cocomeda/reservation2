@@ -116,12 +116,17 @@
           <option value="4">4匹</option>
           <option value="5">5匹</option>
         </select><br><br></h1>
+
+  <div id="image-display" class="image-container">
+    <h1><img id="species-image" src="" alt="品種画像"></h1>h1>
+  </div>
+      
+<h1><p>合計金額: <span id="total-price">0</span>円</p></h1><br>
       
       <h1>↓　受取希望日を選択　↓</h1>
       <h1><div><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></div></h1>
       <h1></h1>
       
-      <h1><p>合計金額: <span id="total-price">0</span>円</p></h1><br>
       <h1 class="cp">
         <label for="agreement">
           <input type="checkbox" id="agreement" name="agreement" onchange="toggleSubmitButton()">
@@ -131,9 +136,7 @@
       <h1 class="top"><button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button></h1>
     </form>
 
-  <div id="image-display" class="image-container">
-    <img id="species-image" src="" alt="品種画像">
-  </div>
+
     
    
 
