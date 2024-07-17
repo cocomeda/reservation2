@@ -1,4 +1,8 @@
  <script>
+
+  function liff_start(){
+
+   
     // LIFFの初期化
     liff.init({ liffId: '1657196041-ALeOLrEa' }, () => {
         if (liff.isLoggedIn()) {
@@ -9,6 +13,9 @@
             liff.login();
         }
     });
+
+}
+   
 
     // IDトークンをGASに送信する関数
     function sendIdTokenToGAS() {
