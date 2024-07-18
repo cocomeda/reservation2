@@ -1,6 +1,5 @@
  <script>
 
-  function liff_start(){
 
    
     // LIFFの初期化
@@ -33,19 +32,21 @@
                 // 成功時
                 console.log(response);
                 displayData(response);
+
+             
             },
             error: function (error) {
                 // エラー時
                 console.error(error);
                 alert('Failed to send ID Token to GAS.');
-            },
-            complete: function () {
-                // 通信完了時の処理
-                $('#loading').hide();
             }
         });
     }
-  
+
+
+
+
+
     // メッセージを表示する関数
     function displayMessage(message) {
         const messageElement = document.createElement('p');
@@ -61,13 +62,15 @@
         progressBar0.style.height = `${jsonData.progress_rate * 100}%`;
 
         if (jsonData.rank === "シルバー") {
+         
 document.getElementById('loading').style.display = 'none'; // Hide loading screen
-          document.getElementById('main-content').style.display = 'block'; // Show main content
-
+document.getElementById('main-content').style.display = 'block'; // Show main content
+         
+      start_js();
          
         } else {
         // Close the LIFF window
         liff.closeWindow
         }
-    }
+
 </script>
