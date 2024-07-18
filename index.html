@@ -46,6 +46,22 @@
     cursor: pointer; /* マウスポインタを表示 */
   }
 
+
+
+  /* 大きなチェックボックスのスタイル */
+  input[type="checkbox"] {
+    transform: scale(2); /* サイズを1.5倍にする */
+    margin-right: 1.5vw; /* チェックボックスとラベルの間にスペースを追加 */
+  }
+
+  label {
+    font-size: 5vw; /* チェックボックスラベルのフォントサイズを調整 */
+  }
+
+
+
+
+  
   #loading {
     position: fixed;
     top: 0;
@@ -57,7 +73,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 4vw;
     z-index: 9999;
   }
 
@@ -80,7 +96,17 @@
       border-color: #ccc; 
     }
 
+hr {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 
+/* 実線 */
+.hr1 {
+  border-top: 1px solid #aaa;
+}
 
 
 
@@ -93,9 +119,11 @@
 <body>
   <div id="loading">Loading...</div>
   <div id="main-content">
-    <h1>メダカ予約注文</h1>
+    <h1 class = "goukei">メダカ予約注文</h1>
+    
+<hr class="hr1">
 
-<h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
+    <h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
     <BR>
     <form id="order-form">
        <h1><label for="species">品種名:</label>
@@ -103,9 +131,9 @@
         <!-- Options will be populated dynamically -->
       </select><br>
 
-      <label for="quantity">匹数:</label>
+      <label for="quantity">数量:</label>
       <select id="quantity" name="quantity" required onchange="updatePrice()">
-        <option value="">選択してください</option>
+        <option value="">匹数を選択</option>
         <option value="1">1匹</option>
         <option value="2">2匹</option>
         <option value="3">3匹</option>
@@ -121,18 +149,18 @@
         <!-- Thumbnails will be populated dynamically -->
       </div>
 
-<h1 class = "goukei">合計金額: <span id="total-price">0</span>円</h1>
-
-
       <h1>↓　受取希望日を選択　↓</h1>
       <h1><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></h1>
+
+
+<h1 class = "goukei">合計金額: <span id="total-price">0</span>円</h1>
 
 
  <h1 class="t"><br></h1>
   <h1 class="cp">
 <label for="agreement">
         <input type="checkbox" id="agreement" name="agreement" onchange="toggleSubmitButton()">
-        期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する
+        期日までに受け取り来られなかった場合、CoCoポイントが10pt消失することに同意する。
       </label></h1>
 
       <h1 class="top"><button type="button" id="submit-button" onclick="submitOrder()" disabled>確定</button></h1>
@@ -147,8 +175,6 @@
   <script>
     let data = [];
     document.addEventListener('DOMContentLoaded', () => {
-
-      
       fetch('https://script.google.com/macros/s/AKfycbxTVVYyrzHIbXt1kpm55r6vWUkeyAyeovxTnbge-3qpqDf_-m0hD0zn7MOWBT6TJWs/exec')
         .then(response => {
           if (!response.ok) {
@@ -277,19 +303,12 @@ function initializeSlider() {
     }
 
 
-    function toggleSubmitButton123() {
-      const species = document.getElementById('species0').value;
-      const quantity = document.getElementById('quantity0').value;
-      const date = document.getElementById('tomorrow0').value;
-      const agreementChecked = document.getElementById('agreement0').checked;
-      const submitButton = document.getElementById('submit-button');
-
-     submitButton.disabled = !(species && quantity && date && agreementChecked);
-
-    }
 
 
+    
   async function submitOrder() {
+      
+    
       const species = document.getElementById('species').value;
       const quantity = document.getElementById('quantity').value;
       const date = document.getElementById('tomorrow').value;
@@ -301,51 +320,22 @@ function initializeSlider() {
           type: 'text',
           text: message
         }]);
+        // Close the LIFF window
         liff.closeWindow();
       } catch (error) {
         console.error('Error sending message:', error);
       }
     }
     
-    async function start_aaa() {
-      return new Promise((resolve, reject) => {
-        liff.init({ liffId: '1657196041-ALeOLrEa' }, async () => {
-          if (liff.isLoggedIn()) {
-            const idToken = liff.getIDToken();
-            $('#loading').show();
-
-            try {
-              const response = await $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbz4I7jwbEU7UFqtoFQnCzVqKtG5xA9dBUw0s-jR8aBxbZ5LzIF8ISLXU7czUhVPYTBnjQ/exec',
-                type: 'POST',
-                data: { idToken: idToken },
-              });
-
-              console.log(response);
-              const jsonData = JSON.parse(response);
-
-              if (jsonData.rank === "シルバー") {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                resolve();
-                
-              } else {
-                alert('シルバーランク以外使えません.');
-                liff.closeWindow();
-                reject('シルバーランク以外使えません.');
-              }
-            } catch (error) {
-              console.error(error);
-              alert('Failed to send ID Token to GAS.');
-              liff.closeWindow();
-              reject('Failed to send ID Token to GAS.');
-            }
-          } else {
-            liff.login();
-          }
-        });
-      });
+    async function main() {
+      await liff.init({ liffId: "1657196041-ALeOLrEa" });
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
     }
+
+    main();
+
   </script>
 </body>
 </html>
