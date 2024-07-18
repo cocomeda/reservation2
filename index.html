@@ -212,6 +212,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           populateSelect();
           initializeSlider();
+
+          
           document.getElementById('loading').style.display = 'none'; // Hide loading screen
           document.getElementById('main-content').style.display = 'block'; // Show main content
         })
@@ -373,8 +375,7 @@ function initializeSlider() {
               const jsonData = JSON.parse(response);
 
               if (jsonData.rank === "シルバー") {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
+
                 resolve();
               } else {
                 alert('シルバーランク以外使えません.');
