@@ -66,7 +66,8 @@ document.getElementById('loading').style.display = 'none'; // Hide loading scree
 
          
         } else {
-            displayMessage("表示できません");
+        // Close the LIFF window
+        liff.closeWindow
         }
     }
 </script>
