@@ -1,7 +1,11 @@
  <script>
 
-
    
+ document.addEventListener('DOMContentLoaded', () => {
+
+
+
+  
     // LIFFの初期化
     liff.init({ liffId: '1657196041-ALeOLrEa' }, () => {
         if (liff.isLoggedIn()) {
