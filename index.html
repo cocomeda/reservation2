@@ -178,7 +178,7 @@ hr {
 
 
 
-
+  <script src="index.js"></script>
 
   <script> 
 
@@ -211,8 +211,9 @@ hr {
 
           populateSelect();
           initializeSlider();
-          document.getElementById('loading').style.display = 'none'; // Hide loading screen
-          document.getElementById('main-content').style.display = 'block'; // Show main content
+
+liff_start();
+          
         })
         .catch(error => {
           console.error('Error fetching data:', error);
