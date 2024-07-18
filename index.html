@@ -169,19 +169,10 @@ hr {
 
     </form>
   </div>
-  <hr class="hr1">
- <h1><br></h1>
-  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-
-
-  <script src="index.js"></script>
-
-  <script> 
-
+  <script>
     let data = [];
     document.addEventListener('DOMContentLoaded', () => {
       fetch('https://script.google.com/macros/s/AKfycbxTVVYyrzHIbXt1kpm55r6vWUkeyAyeovxTnbge-3qpqDf_-m0hD0zn7MOWBT6TJWs/exec')
@@ -211,9 +202,8 @@ hr {
 
           populateSelect();
           initializeSlider();
-
-await liff_start();
-          
+          document.getElementById('loading').style.display = 'none'; // Hide loading screen
+          document.getElementById('main-content').style.display = 'block'; // Show main content
         })
         .catch(error => {
           console.error('Error fetching data:', error);
@@ -349,3 +339,5 @@ function initializeSlider() {
   </script>
 </body>
 </html>
+
+
