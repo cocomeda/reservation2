@@ -334,7 +334,7 @@ function initializeSlider() {
 const now_today0 = `${now_today.getFullYear()}/${now_today.getMonth() + 1}/${now_today.getDate()}/${now_today.getHours()}:${('0' + now_today.getMinutes()).slice(-2)}`;
 
     
-      const message = `【注文内容】${now_today0}\n==============================\n品種名: ${species}\n数量(匹): ${quantity}\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
+      const message = `【注文内容】${now_today0}\n==============================\n品種名: ${species}\n数量: ${quantity}\n代金: ${price}円\n==============================\n受け取り希望日: ${date}`;
 
       try {
         await liff.sendMessages([{
