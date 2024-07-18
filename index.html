@@ -374,13 +374,13 @@ function initializeSlider() {
               console.log(response);
               const jsonData = JSON.parse(response);
 
-              if (jsonData.rank === "シルバー") {
+              if (jsonData.score <= 10) {
 
                 resolve();
               } else {
-                alert('シルバーランク以外使えません.');
+                alert('シルバーランク以上で使用できます。');
                 liff.closeWindow();
-                reject('シルバーランク以外使えません.');
+                reject('シルバーランク以上で使用できます。');
               }
             } catch (error) {
               console.error(error);
