@@ -357,59 +357,43 @@ function initializeSlider() {
 
 function start_aaa(){
     // LIFFの初期化
-    liff.init({ liffId: '1657196041-ALeOLrEa' }, () => {
+    liff.init({ liffId: '1657196041-ALeOLrEa' }, async () => {
         if (liff.isLoggedIn()) {
             // ユーザーがログインしている場合
+            const idToken = liff.getIDToken();
+            // ローディング画像表示
+            $('#loading').show();
 
+            try {
+                // IDトークンをGASに送信
+                const response = await $.ajax({
+                    url: 'https://script.google.com/macros/s/AKfycbz4I7jwbEU7UFqtoFQnCzVqKtG5xA9dBUw0s-jR8aBxbZ5LzIF8ISLXU7czUhVPYTBnjQ/exec',
+                    type: 'POST',
+                    data: { idToken: idToken },
+                });
 
-          
-             const idToken = liff.getIDToken();
-        // ローディング画像表示
-        $('#loading').show();
-
-        // IDトークンをGASに送信
-        $.ajax({
-            url: 'https://script.google.com/macros/s/AKfycbz4I7jwbEU7UFqtoFQnCzVqKtG5xA9dBUw0s-jR8aBxbZ5LzIF8ISLXU7czUhVPYTBnjQ/exec',
-            type: 'POST',
-            data: { idToken: idToken },
-            success: function (response) {
                 // 成功時
                 console.log(response);
+                const jsonData = JSON.parse(response);
 
-        const jsonData = JSON.parse(data);
-
-        const progressBar0 = document.getElementById('progressBar_vertical');
-        progressBar0.style.height = `${jsonData.progress_rate * 100}%`;
-
-        if (jsonData.rank === "シルバー") {
-         
-document.getElementById('loading').style.display = 'none'; // Hide loading screen
-document.getElementById('main-content').style.display = 'block'; // Show main content
-         
-         
-        } else {
-        // Close the LIFF window
-         alert('シルバーランク以外使えません.');
-        liff.closeWindow()
-          
-        }
-            },
-            error: function (error) {
+                if (jsonData.rank === "シルバー") {
+                    document.getElementById('loading').style.display = 'none'; // Hide loading screen
+                    document.getElementById('main-content').style.display = 'block'; // Show main content
+                } else {
+                    alert('シルバーランク以外使えません.');
+                    liff.closeWindow();
+                }
+            } catch (error) {
                 // エラー時
                 console.error(error);
                 alert('Failed to send ID Token to GAS.');
+                liff.closeWindow(); // エラー発生時にもLIFFウィンドウを閉じる
             }
-        });
-
         } else {
             // ログインが必要な場合、ログインページを表示
             liff.login();
         }
     });
-
-
-
-
 }
 
 
