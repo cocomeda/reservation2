@@ -175,6 +175,17 @@ hr {
   <script>
     let data = [];
     document.addEventListener('DOMContentLoaded', () => {
+    
+await start_aaa();
+      first_aaaa();
+      
+    }
+
+
+                              
+function first_aaaa(){
+
+      
       fetch('https://script.google.com/macros/s/AKfycbxTVVYyrzHIbXt1kpm55r6vWUkeyAyeovxTnbge-3qpqDf_-m0hD0zn7MOWBT6TJWs/exec')
         .then(response => {
           if (!response.ok) {
@@ -336,6 +347,54 @@ function initializeSlider() {
 
     main();
 
+
+
+
+ async function start_aaa() {
+      return new Promise((resolve, reject) => {
+        liff.init({ liffId: '1657196041-ALeOLrEa' }, async () => {
+          if (liff.isLoggedIn()) {
+            const idToken = liff.getIDToken();
+            $('#loading').show();
+
+            try {
+              const response = await $.ajax({
+                url: 'https://script.google.com/macros/s/AKfycbz4I7jwbEU7UFqtoFQnCzVqKtG5xA9dBUw0s-jR8aBxbZ5LzIF8ISLXU7czUhVPYTBnjQ/exec',
+                type: 'POST',
+                data: { idToken: idToken },
+              });
+
+              console.log(response);
+              const jsonData = JSON.parse(response);
+
+              if (jsonData.rank === "シルバー") {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                resolve();
+              } else {
+                alert('シルバーランク以外使えません.');
+                liff.closeWindow();
+                reject('シルバーランク以外使えません.');
+              }
+            } catch (error) {
+              console.error(error);
+              alert('Failed to send ID Token to GAS.');
+              liff.closeWindow();
+              reject('Failed to send ID Token to GAS.');
+            }
+          } else {
+            liff.login();
+          }
+        });
+      });
+    }
+
+
+
+
+
+
+    
   </script>
 </body>
 </html>
