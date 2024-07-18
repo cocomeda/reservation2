@@ -61,8 +61,10 @@
         progressBar0.style.height = `${jsonData.progress_rate * 100}%`;
 
         if (jsonData.rank === "シルバー") {
-            document.querySelector("pa").style.backgroundColor = "#f5f5f5";
-            $('#content').show();  // コンテンツを表示
+document.getElementById('loading').style.display = 'none'; // Hide loading screen
+          document.getElementById('main-content').style.display = 'block'; // Show main content
+
+         
         } else {
             displayMessage("表示できません");
         }
