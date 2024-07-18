@@ -174,12 +174,14 @@ hr {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script>
     let data = [];
-    document.addEventListener('DOMContentLoaded', () => {
-    
-await start_aaa();
-      first_aaaa();
-      
-    }
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await start_aaa();
+    first_aaaa();
+  } catch (error) {
+    console.error('Error in start_aaa:', error);
+  }
+});
 
 
                               
