@@ -374,7 +374,7 @@ function initializeSlider() {
               console.log(response);
               const jsonData = JSON.parse(response);
 
-              if (jsonData.score <= 10) {
+              if (jsonData.score >= 10) {
 
                 resolve();
               } else {
