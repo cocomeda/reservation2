@@ -8,6 +8,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
 
 <link rel="stylesheet" href="css/style.css">
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  
 <style>
   /* プルダウンメニューのスタイル */
   select {
@@ -145,7 +148,7 @@
     let data = [];
     document.addEventListener('DOMContentLoaded', () => {
 
-
+await start_aaa();
 
       
       fetch('https://script.google.com/macros/s/AKfycbxTVVYyrzHIbXt1kpm55r6vWUkeyAyeovxTnbge-3qpqDf_-m0hD0zn7MOWBT6TJWs/exec')
@@ -327,6 +330,7 @@ function initializeSlider() {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 resolve();
+                
               } else {
                 alert('シルバーランク以外使えません.');
                 liff.closeWindow();
