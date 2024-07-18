@@ -179,9 +179,15 @@ hr {
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+  <script src="index.js"></script>
+  
   <script>
     let data = [];
-    document.addEventListener('DOMContentLoaded', () => {
+
+    
+    function start_js(){
+    
       fetch('https://script.google.com/macros/s/AKfycbxTVVYyrzHIbXt1kpm55r6vWUkeyAyeovxTnbge-3qpqDf_-m0hD0zn7MOWBT6TJWs/exec')
         .then(response => {
           if (!response.ok) {
@@ -216,7 +222,11 @@ hr {
           console.error('Error fetching data:', error);
           document.getElementById('loading').innerText = 'データの取得に失敗しました'; // Show error message
         });
-    });
+    );
+
+    }
+
+    
 
     function populateSelect() {
       const select = document.getElementById('species');
