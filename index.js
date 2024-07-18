@@ -72,5 +72,5 @@ document.getElementById('main-content').style.display = 'block'; // Show main co
         // Close the LIFF window
         liff.closeWindow
         }
-
+       }
 </script>
