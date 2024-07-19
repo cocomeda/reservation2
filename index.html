@@ -126,7 +126,7 @@ hr {
     <h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
     <BR>
     <form id="order-form">
-       <h1><label for="species">品種名:</label>
+       <h1 class="b_n"><label for="species">品種名:</label>
       <select id="species" name="species" required onchange="updateSlider()">
         <!-- Options will be populated dynamically -->
       </select><br>
@@ -149,7 +149,7 @@ hr {
         <!-- Thumbnails will be populated dynamically -->
       </div>
 
-      <h1>↓　受取希望日を選択　↓</h1>
+      <h1 class="b_n">↓　受取希望日を選択　↓</h1>
       <h1><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></h1>
 
 
