@@ -123,15 +123,15 @@ hr {
     
 <hr class="hr1">
 
-    <h1>※ご希望の品種と数量、受取日を指定したうえで確定ボタンを押してください。</h1>
+    <h1>※①〜③を指定し、最後にチェックを入れて確定ボタンを押してください。</h1>
     <BR>
     <form id="order-form">
-       <h1 class="b_n"><label for="species">品種名:</label>
+       <h1 class="b_n"><label for="species">①品種名:</label>
       <select id="species" name="species" required onchange="updateSlider()">
         <!-- Options will be populated dynamically -->
       </select><br>
 
-      <label for="quantity">数量:</label>
+      <label for="quantity">②数量:</label>
       <select id="quantity" name="quantity" required onchange="updatePrice()">
         <option value="">匹数を選択</option>
         <option value="1">1匹</option>
@@ -149,7 +149,7 @@ hr {
         <!-- Thumbnails will be populated dynamically -->
       </div>
 
-      <h1 class="b_n">↓　受取希望日を選択　↓</h1>
+      <h1 class="b_n">↓　③受取希望日を選択　↓</h1>
       <h1><input type="date" name="daytime" class="button" id="tomorrow" style="font-size:8vw" required onchange="toggleSubmitButton()"></h1>
 
 
