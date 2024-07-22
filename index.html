@@ -347,13 +347,11 @@ function updatePrice() {
 
   if (species && quantity) {
     document.getElementById('price-details').textContent = `${unitPrice}円 × ${quantity}`;
-    document.getElementById('price-details-container').style.display = 'block'; // 表示
   } else {
-    document.getElementById('price-details-container').style.display = 'none'; // 非表示
+    document.getElementById('price-details').textContent = '未選択'; // 選択されていない場合のデフォルトテキスト
   }
   
   document.getElementById('total-price').textContent = totalPrice;
-
   toggleSubmitButton(); // ボタンの状態をチェック
 }
 
