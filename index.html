@@ -164,7 +164,6 @@ margin-top: 1vw;
         <!-- Thumbnails will be populated dynamically -->
       </div>
 	    
-<h1><span id="unit-price"></span>円 × <span id="quantity2"></span></h1>
 <h1 class = "goukei">合計金額: <span id="total-price">0</span>円</h1>
     <h1>※当日、代金箱にお入れください。</h1>
 	
@@ -321,10 +320,7 @@ function initializeSlider() {
       const quantity = document.getElementById('quantity').value;
       const totalPrice = calculatePrice(species, quantity);
 	    
-      data.find(item => item.species === species)?.price * quantity || 0;
-      document.getElementById('unit-price').textContent = data.find(item => item.species === species)?.price || "";
-      document.getElementById('quantity2').textContent = quantity;
-	    
+      data.find(item => item.species === species)?.price * quantity || 0;    
       toggleSubmitButton(); // Check the state of the submit button
     }
 
