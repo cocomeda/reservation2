@@ -164,6 +164,10 @@ margin-top: 1vw;
         <!-- Thumbnails will be populated dynamically -->
       </div>
 	    
+<h1 class="b_n" id="price-details-container" style="display: none;">
+  価格詳細: <span id="price-details">0円 × 0匹</span>
+</h1>	   
+	    
 <h1 class = "goukei">合計金額: <span id="total-price">0</span>円</h1>
     <h1>※当日、代金箱にお入れください。</h1>
 	
@@ -309,21 +313,51 @@ function initializeSlider() {
 
     }
 
-    
+  
 
     function calculatePrice(species, quantity) {
       return data.find(item => item.species === species)?.price * quantity || 0;
     }
 
-    function updatePrice() {
-      const species = document.getElementById('species').value;
-      const quantity = document.getElementById('quantity').value;
-      const totalPrice = calculatePrice(species, quantity);
-	    
-      data.find(item => item.species === species)?.price * quantity || 0;    
-      toggleSubmitButton(); // Check the state of the submit button
-    }
 
+
+
+
+
+
+
+	  
+function updatePrice() {
+  const species = document.getElementById('species').value;
+  const quantity = document.getElementById('quantity').value;
+  const item = data.find(item => item.species === species);
+  const unitPrice = item?.price || 0;
+  const totalPrice = unitPrice * quantity;
+
+  if (species && quantity) {
+    document.getElementById('price-details').textContent = `${unitPrice}円 × ${quantity}`;
+    document.getElementById('price-details-container').style.display = 'block'; // 表示
+  } else {
+    document.getElementById('price-details-container').style.display = 'none'; // 非表示
+  }
+  
+  document.getElementById('total-price').textContent = totalPrice;
+
+  toggleSubmitButton(); // ボタンの状態をチェック
+}
+
+  
+
+   // function updatePrice() {
+    //  const species = document.getElementById('species').value;
+   //   const quantity = document.getElementById('quantity').value;
+   //   const totalPrice = calculatePrice(species, quantity);
+	    
+  //    data.find(item => item.species === species)?.price * quantity || 0;    
+  //    toggleSubmitButton(); // Check the state of the submit button
+ //   }
+
+	  
     function toggleSubmitButton() {
       const species = document.getElementById('species').value;
       const quantity = document.getElementById('quantity').value;
@@ -337,9 +371,6 @@ function initializeSlider() {
         submitButton.disabled = true;
       }
     }
-
-
-
 
     
   async function submitOrder() {
