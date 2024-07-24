@@ -176,7 +176,7 @@ margin-top: 1vw;
       </div>
 	    
 <h1 class="b_n" id="price-details-container">
-  単価×数量: <span id="price-details">0円 × 0匹</span>
+  単価×数量: <span id="price-details">未選択</span>
 </h1>	   
 	    
 <h1 class = "goukei">合計金額: <span id="total-price">0</span>円</h1>
@@ -349,9 +349,6 @@ function updatePrice() {
     document.getElementById('price-details').textContent = `${unitPrice}円 × ${quantity}`;
 	  
   } else {
-	  
-    document.getElementById('price-details').textContent = '未選択'; // 選択されていない場合のデフォルトテキスト
-  }else if(species || quantity){
     document.getElementById('price-details').textContent = '未選択'; // 選択されていない場合のデフォルトテキスト
   }
   
